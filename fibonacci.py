@@ -65,21 +65,38 @@ fib.next()
 fib.next()
 print fib.next()
 
+# WITH MEMOIZATION 
 
+def fib(num):
+    """
+    >>> fib(3):
+    2
+    """
 
+    known = {0:0, 1:1}
 
+    if num not in known:
+        value = fib(n-1) + fib(n-2)
+        known[n] = value 
+    return known[n]
 
+# USING MEMOIZATION AS A DECORATOR 
 
+class Memoize:
+    def __init__(self, fn):
+        self.fn = fn
+        self.memo = {} 
 
+    def __call__(self, arg):
+        if arg not in self.memo:
+            self.memo[arg] = self.fn(arg)
+            return self.memo[arg]
 
-
-
-
-
-
-
-
-
+    @Memoize
+    def fib(n):
+        for i in range(n-1):
+            a,b = b, a+b
+        return a 
 
 
 
