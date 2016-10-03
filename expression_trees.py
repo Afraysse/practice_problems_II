@@ -29,9 +29,25 @@ class Tree:
         print_tree_inorder(tree.right)
 
     ### write tokenization function for converting input_string into token
+
+    def is_digit(expression):
+        """ Checks if is digit."""
+
+        return (int(i) for i in expression if i.isdigit())
+
     def string_to_token(expression_string):
         """ Convert a string into a tokenized list."""
-        pass 
+
+        token_list = []
+            
+        for i in expression_string:
+            if i.isdigit():
+                token_list.append(int(i))
+            else:
+                token_list.append(i)
+            
+        token_list.append("end")
+        return token_list
 
     def get_token(token_list, expected):
     """ Check first item in token list."""
