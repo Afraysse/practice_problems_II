@@ -45,11 +45,36 @@ class Tree:
 
     def get_number(token_list):
         """ See if next number is int. Del if True, return new Tree node. """
-        x = token_list[0]
-        if type(x) != type(0): return None
-        del token_list[0]
-        return Tree(x, None, None)
+        if get_token(token_list, '('):
+            x = get_sum(token_list)         # grab the sub-expression enclosed
+            if not get_token(token_list, ')')      # remove the parenthesis 
+                raise ValueError('Missing close parenthesis') # throws an error if parenthesis is missing 
+            return x 
+        else:
+            x = token_list[0]
+            if type(x) != type(0): return None
+            del token_list[0]
+            return Tree(x, None, None)
 
+    def get_product(token_list):
+        """ Build an expression tree for products."""
+        a = get_number(token_list)
+        if get_token(token_list, "*"):
+            b = get_product(token_list) # call recursively to deal with compound products
+            return Tree("*", a, b)
+        return a 
+
+    # assuming get_number succeeds and returns a singleton tree
+    # a product can be either a singleton tree or a a tree with a *
+    # at the root, a number on the left and a product on the right
+
+    def get_sum(token_list):
+        """ Build a tree of either sums and products or simply a product."""
+        a = get_product(token_list)
+        if get_token(token_list, "+"):
+            b = get_sum(token_list)
+            return Tree("+", a, b)
+        return a 
 
 
 
