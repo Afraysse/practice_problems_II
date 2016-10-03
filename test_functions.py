@@ -124,11 +124,62 @@ def area2(xc, yc, xp, yp):
     return area(distance(xc, yc, xp, yp))
 
 
+""" BOOLEAN FUNCTIONS """
 
+# boolean functions are convenient for hiding complicated tests inside functions
 
+def is_divisible(x, y):
+    """ Test if x is exactly divisible by y """
+    if x % y == 0:
+        return True
+    return False 
 
+# the if statement in and of itself is a boolean, so to simplify:
 
+def is_divisible(x, y):
+    """
+    >>> is_divisible(4, 2)
+    True 
+    >>> is_divisible(6, 4)
+    False 
+    """
+    return x % y == 0
 
+""" UNIT TESTING """
 
+# scaffolding - extra code which is created for simplifying debugging and testing 
+# test suite - a collection of tests 
 
+# to plan tests, think carefully about edge cases 
+
+# writing a helper function to check the results of one test 
+# takes a boolean argument and will either print a message saying test passed or failed
+# first line determines the line num in the script where the call was made from 
+# allows printing of line num of test, helps to identify which test passed or failed
+
+import sys 
+
+def test(did_pass): 
+    """ Print the result of a test."""
+    linenum = sys._getframe(1).f_lineno # get the caller's line num
+    if did_pass:
+        msg = "Test at line {0} okay.".format(linenum)
+    else:
+        msg = ("Test at line {0} FAILED.").format(linenum))
+    print(msg)
+
+# with helper function, can now write test suite 
+def test_suite():
+    """ Run suite of tests for code in this module."""
+
+    test(absolute_val(17) == 17)
+    test(absolute_val(-17) == 17)
+    test(absolute_val(0) == 0)
+    test(absolute_val(3.14) == 3.14)
+    test(absolute_val(-3.14) == 3.14)
+
+test_suite()       # call to run tests
+
+# can also use assert(), which will return an error and the program stops
+# can use assert() instead of test function 
 
