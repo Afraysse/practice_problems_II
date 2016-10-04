@@ -38,9 +38,11 @@ def load_words_from_file(filename):
     file_content = f.read()
     f.close()
     wds = file_content.split()
+
     return wds 
 
 bigger_vocab = load_words_from_file("vocab.txt")
+
 print ("There are {0} words in the vocab, starting with \n {1} ".format(len(bigger_vocab), bigger_vocab[:6]))
 
 def text_to_words(the_text):
@@ -98,6 +100,27 @@ def binary_search(xs, target):
             lb = mid_range + 1      # use upper half of ROI next round
         else:
             ub = mid_range          # use lower half of ROI next round
+
+    return mid_item
+
+t0 = time.clock()
+missing_words = binary_search(bigger_vocab, book_words)
+t1 = time.clock()
+print("There are {0} unknown words.".format(len(missing_words)))
+print("That took {0:/4f} seconds.".format(t1-t0))
+
+# more than 200 times faster!
+
+# MATH COMPONENT - BINARY SEARCH ALGORITHM
+
+from math import log, ceil 
+
+# to calculate the number of probes (k) related to N (list size)
+
+k = ceil(log(N + 1, 2))
+
+# >>> ceil(log(1000 + 1, 2))
+# 10.0
 
 ############################## TEST FUNCTION ###################################
 
