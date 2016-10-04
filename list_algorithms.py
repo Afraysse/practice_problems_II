@@ -196,6 +196,10 @@ def merge_sort(xs, ys):
 
     return result 
 
+# Pattern for merge sort: run through the lists, always processing the smallest 
+# remaining items from each, with these cases to consider. 
+
+
 ############################## TEST FUNCTION ###################################
 
 # test function 
