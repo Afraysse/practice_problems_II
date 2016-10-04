@@ -172,13 +172,6 @@ def merge_sort(xs, ys):
 
 def merge_sort(xs, ys):
 
-    xy = xy.insert(-1, ys)
-    xy.sort()
-
-# OR 
-
-def merge_sort(xs, ys):
-
     result = []
     xi = 0
     yi = 0 
