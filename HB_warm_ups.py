@@ -72,12 +72,32 @@ def polish_notation(s):
     """ Calculate (s) where s as a string is the equation."""
 
 # iterate through list - see if int or symbol 
-# the first item should be a symbol 
-# the last item should be a num 
+# keep seperate stacks - operators and numbers 
+# pop last num off to start - perform backwards 
 
-# could either put into a new string or a list 
+# operators = [/, -]
+# numbers = [6, 4, 2]
 
-    new = s.split(" ")
+# combining as we go, popping backwards 
+
+    operators = []
+    numbers = []
+
+    t = s.split(" ")
+
+    operand2 = int(t.pop())
+
+    while tokens:
+        # grab the right-most number 
+        operand1 = int(t.pop())
+
+        # grab the right-most operand
+        operator = t.pop()
+
+        # do 
+
+
+
 
 
 
